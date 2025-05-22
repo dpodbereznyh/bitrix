@@ -1,0 +1,62 @@
+.teg-cont{
+display: flex;
+flex-wrap: wrap;
+margin-bottom: 30px;
+}
+
+.teg{
+display: inline-block;
+margin-right: 10px;
+background: #FFFFFF;
+border: 1px solid #F2F2F2;
+
+margin-bottom: 10px;
+position:relative;
+}
+
+  .teg a{
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+text-decoration: none;
+color: #333333;
+width: 100%;
+height: 100%;
+display:block;
+}
+
+.teg .teg-in{
+padding: 8px 44px;
+}
+
+.teg a:hover {
+    text-decoration: none;
+}
+
+.teg.active,.teg:hover{
+    background: #00377B;
+border: 1px solid #F2F2F2;
+    color: white;
+}
+ .teg.active a ,.teg:hover a {
+ color: white;   
+}
+
+.teg-title{
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+color: #333333;
+margin-bottom: 12px;
+margin-top: 10px;
+}
+
+.teg span{
+position: absolute;
+right: 10px;
+top: 8px;
+}

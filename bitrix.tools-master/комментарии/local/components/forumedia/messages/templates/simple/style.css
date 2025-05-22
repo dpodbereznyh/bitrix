@@ -1,0 +1,32 @@
+.catalog-stars{
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-top:10px;
+}
+
+.catalog-stars .star-act{
+    background: url("star-act.png");
+    height: 13px;
+    width: 13px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin: 0;
+}
+
+.catalog-stars .star{
+    background: url("star.png");
+    height: 13px;
+    width: 13px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin: 0;
+}
+
+.catalog-stars .stars{
+   margin-right:10px;
+}
+
+

@@ -1,0 +1,38 @@
+li.item{
+        color: #ab201d; /* Цвет маркеров */
+        list-style: none;
+    }
+li.item span {
+        color: #ab201d; /* Цвет текста */
+    }
+ul.level-0{
+        margin-left: 10px !important;
+    }
+ul.level-1{
+        margin-left: 20px !important;
+    }
+.level-1>span{
+       font-weight: 700 !important;   
+   }
+.level-2>span{
+       font-weight: 600 !important;   
+   }
+ul.level-2{
+    margin-left: 20px !important;
+}
+ul.level-3{
+    margin-left: 10px !important;
+}
+ul.level-4{
+    margin-left: 10px !important;
+}
+ul.level-5{
+    margin-left: 10px !important;
+}
+ul.level-6{
+    margin-left: 10px !important;
+}
+
+.sitemap{
+    margin-bottom: 40px;
+}

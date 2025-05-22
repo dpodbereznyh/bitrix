@@ -1,0 +1,9 @@
+<?php
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+$MESS["SEO_TAGS_PARAMETER_IBLOCK_ID_NAME"] = "Iblock ID";
+$MESS["SEO_TAGS_PARAMETER_ELEMENT_ID_NAME"] = "Element ID";
+$MESS["SEO_TAGS_PARAMETER_SECTION_ID_NAME"] = "Section ID";
+$MESS["SEO_TAGS_PARAMETER_MODE_NAME"] = "Operating mode";
+$MESS["SEO_TAGS_PARAMETER_MODE_VALUE_1"] = "SEO tags for an element";
+$MESS["SEO_TAGS_PARAMETER_MODE_VALUE_2"] = "SEO tags for the section";

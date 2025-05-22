@@ -1,0 +1,122 @@
+.regions .region-ico
+{
+fill: #a4c5c5;
+height: 16px;
+width: 30px;
+}
+
+.regions
+{
+display:flex;
+align-items:center;
+cursor:pointer;
+}
+
+.regions-center
+{
+text-transform: uppercase;
+font-weight: bold;
+cursor: pointer;
+width:100%;
+white-space: nowrap; /* Запрещаем перенос строк */
+overflow: hidden; /* Обрезаем все, что не помещается в область */
+text-overflow: ellipsis;
+}
+
+.region-right
+{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.regions .region-arrow
+{
+fill: #a4c5c5;
+height: 10px;
+width: 20px;
+}
+
+.regions{
+width:140px;
+}
+
+.regions-form
+{
+width:600px;
+position:absolute;
+padding: 30px;
+left:calc(50% - 300px);
+top:30%;
+background:white;
+}
+
+.regions-close
+{
+position:absolute;
+height:18px;
+width:18px;
+right:5px;
+top:5px;
+cursor:pointer;
+}
+
+.regions-input input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px auto
+}
+
+.regions-body{
+display:flex;
+flex-wrap:wrap;
+height:200px;
+flex-direction:column;
+}
+
+.regions-body-items{
+width:25%;
+padding:5px 4px 5px 0;
+font-size: 15px;
+}
+
+.background-fill{
+height:100%;
+width:100%;
+position:fixed;
+background:rgba(0,0,0,0.6);
+z-index:1000;
+}
+
+.mobile-toggle-menu .regions{
+width:100%;
+margin-bottom:20px;
+}
+
+@media (max-width: 610px){
+    .regions-form
+    {
+    width:450px;
+    left:calc(50% - 225px);
+top:5%;
+    }
+    .regions-body-items{width:30%;}
+
+.regions-body{
+max-height:270px;
+height:auto;
+}
+}
+@media (max-width: 460px){
+    .regions-form
+    {
+    width:300px;
+    left:calc(50% - 150px);
+top:5%;
+    }
+.regions-body-items{width:50%;}
+.regions-body{
+max-height:420px;
+height:auto;
+}
+}

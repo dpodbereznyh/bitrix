@@ -1,0 +1,3 @@
+<?/* Если мы находимся на главной */?>
+<? if ($APPLICATION->GetCurPage(false) === '/'): ?>
+<? endif; ?>

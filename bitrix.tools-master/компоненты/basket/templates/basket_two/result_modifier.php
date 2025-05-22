@@ -1,0 +1,29 @@
+<?
+
+if ( ! defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+    die();
+}
+
+?>
+<script>
+    console.log(<?=json_encode($arParams, JSON_UNESCAPED_UNICODE)?>,'bbbbbbbbb');
+console.log(<?=json_encode($arResult, JSON_UNESCAPED_UNICODE)?>);
+</script>
+<?
+
+
+foreach ($arResult["ITEMS"] as &$item) {
+    $image['src']    = NO_IMAGE_PATH;
+    $image['height'] = '100';
+    $image['width']  = '100';
+    if (empty($item['PRODUCT']['FIELDS']['PREVIEW_PICTURE']) && !empty($item['PRODUCT']['FIELDS']['DETAIL_PICTURE'])) {
+        $image = CFile::ResizeImageGet($item['PRODUCT']['FIELDS']['DETAIL_PICTURE'], array('width' => 100, 'height' => 100), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+    } elseif (!empty($item['PRODUCT']['FIELDS']['PREVIEW_PICTURE'])) {
+        $image = CFile::ResizeImageGet($item['PRODUCT']['FIELDS']['PREVIEW_PICTURE'], array('width' => 100, 'height' => 100), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+    }
+
+    $item['PREVIEW_PICTURE']['SRC']    = $image['src'];
+    $item['PREVIEW_PICTURE']['HEIGHT'] = $image['height'];
+    $item['PREVIEW_PICTURE']['WIDTH']  = $image['width'];
+}
+

@@ -1,0 +1,16 @@
+$arParams["SEF_FOLDER_DETAIL"] - дирекория детальной страницы
+
+1) В urlrewrite.php добавить правило для детальной страницы
+  21 => 
+  array (
+    'CONDITION' => '#^/product/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/category/index.php',
+    'SORT' => 100,
+  )
+
+2) В шаблоне каталога у всех компонентов заменить в параметре 'DETAIL_URL' c $arResult['FOLDER'] на $arParams["SEF_FOLDER_DETAIL"]
+
+3) В инфоблоке в ЧПУ детальной странице указать значение $arParams["SEF_FOLDER_DETAIL"];
+

@@ -1,0 +1,20 @@
+
+.btnBase.btnPoint {
+    background: var(--primary);
+}
+
+.btnBase{
+	cursor: pointer;
+}
+
+a{
+	cursor: pointer;
+}
+
+div a.btnNormal.sizeM:hover, 
+div button.btnNormal.sizeM:hover {
+    background-color: var(--primary);
+}
+
+div.xans-order-basketpackage .ec-base-table td.button [class^=btn]{
+width: 120px;}

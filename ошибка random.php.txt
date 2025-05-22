@@ -1,0 +1,8 @@
+/bitrix/modules/main/lib/security/random.php строка 117 примерно
+// Временно возвращаем "свою" рандомную строку
+       $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+       $randstring = '';
+       for ($i = 0; $i < 10; $i++) {
+           $randstring = $characters[rand(0, strlen($characters))];
+       }
+       return $randstring; // Конец

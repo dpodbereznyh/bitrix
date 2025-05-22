@@ -1,0 +1,29 @@
+<?
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+
+$arResult = array();
+
+require_once 'WGet.php';
+
+$arResult['ITEMS']=WGet::getResult(
+    $arParams['IBLOCK_ID'],
+    $arParams['FILTER'],
+    !empty($arParams['SORT'])?$arParams['SORT']:array('sort' => 'ASC', 'id' => 'DESC'),
+    !empty($arParams['NAV'])?$arParams['NAV']:false,
+    !empty($arParams['SELECT'])?$arParams['SELECT']:[]);
+
+$arResult['TEGS']=WGet::getTegs(
+    $arResult['ITEMS'],
+    $arParams['CATALOG_IBLOCK_ID'],
+    !empty($arParams['CATALOG_SECTION_ID'])?$arParams['CATALOG_SECTION_ID']:false,
+    $arParams['COUNT'],
+    $arParams['BRAND']);
+
+	WGet::addLinks($arParams['IBLOCK_ID'],$arResult['ITEMS'],false);
+
+$this->IncludeComponentTemplate();
+
+return $arResult;
+?>
+
+

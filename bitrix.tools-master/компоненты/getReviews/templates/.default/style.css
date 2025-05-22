@@ -1,0 +1,118 @@
+.reviews-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.reviews-item {
+    min-width: 200px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid #e5e5e5;
+    border-color: var(--stroke_black);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all ease 0.3s;
+}
+
+.reviews-item:hover {
+    box-shadow: 0px 5px 30px rgba(34, 34, 34, 0.1);
+    border-color: #fff;
+    border-color: var(--stroke_black_hover);
+    background-color: #fff;
+    background-color: var(--card_bg_hover_black);
+}
+
+.reviews-item__author-date-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviews-item__rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 0 0 15px 0;
+}
+
+.reviews-item__rating .item-rating {
+    margin-bottom: 4px;
+}
+
+.rating__star-svg--filled * {
+    fill: #ffb45b
+}
+
+.reviews-item .reviews-item__photo-wrapper {
+    width: 100%;
+}
+
+.reviews-item .reviews-item__photo-wrapper .reviews-item__photo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-item .reviews-item__photo-wrapper .reviews-item__photo img {
+    width: auto;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.reviews-item__info-container {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.reviews-item__info-container .reviews-item__name {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0 0 10px 0;
+}
+
+.reviews-item__info-container .reviews-item__text {
+    line-height: 30px;
+    overflow: hidden;
+}
+
+.reviews-item__info-container .reviews-item__text-more {
+    display: none;
+    cursor: pointer;
+    text-align: right;
+    opacity: 1;
+}
+
+.reviews-item__info-container .reviews-item__text-more:hover {
+    opacity: 0.8;
+}
+
+.reviews-item__info-container .reviews-item__link-product {
+    padding: 10px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.reviews-pagination {
+    margin-top: 30px;
+}
+
+.reviews-pagination ul li:before {
+    display: none;
+}

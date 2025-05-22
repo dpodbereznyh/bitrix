@@ -1,0 +1,4 @@
+User-agent: *               
+Disallow: /
+Host: teflonopt.ru
+Sitemap: https://teflonopt.ru/sitemap.xml

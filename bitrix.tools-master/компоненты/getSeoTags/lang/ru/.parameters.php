@@ -1,0 +1,9 @@
+<?php
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+$MESS["SEO_TAGS_PARAMETER_IBLOCK_ID_NAME"] = "ID инфоблока";
+$MESS["SEO_TAGS_PARAMETER_ELEMENT_ID_NAME"] = "ID элемента";
+$MESS["SEO_TAGS_PARAMETER_SECTION_ID_NAME"] = "ID раздела";
+$MESS["SEO_TAGS_PARAMETER_MODE_NAME"] = "Режим работы";
+$MESS["SEO_TAGS_PARAMETER_MODE_VALUE_1"] = "SEO теги для элемента";
+$MESS["SEO_TAGS_PARAMETER_MODE_VALUE_2"] = "SEO теги для раздела";

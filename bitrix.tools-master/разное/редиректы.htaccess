@@ -1,0 +1,210 @@
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+php_flag log_errors on
+php_flag ignore_repeated_errors off
+php_flag ignore_repeated_source off
+php_flag report_memleaks on
+php_flag track_errors on
+php_value docref_root 0
+php_value docref_ext 0
+php_value error_log /home/a/adminrn5/exmash.com/public_html/PHP_errors.log
+php_value error_reporting 2047
+php_value log_errors_max_len 0
+
+<Files PHP_errors.log>
+    Require all denied
+</Files>
+# For full documentation and other suggested options, please see
+# http://rtfm.modx.com/evolution/1.0/administration/friendly-url-solutions
+# including for unexpected logouts in multi-server/cloud environments
+# and especially for the first three commented out rules
+
+#php_flag register_globals Off
+AddDefaultCharset utf-8
+#php_value date.timezone Europe/Moscow
+
+#Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+
+
+# на без www и с слешем на конце адреса страницы
+RewriteCond %{REQUEST_URI} !\?
+RewriteCond %{REQUEST_URI} !\&
+RewriteCond %{REQUEST_URI} !\=
+RewriteCond %{REQUEST_URI} !\.
+RewriteCond %{REQUEST_URI} !\/$
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ https://%1/$1/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} !\?
+RewriteCond %{REQUEST_URI} !\&
+RewriteCond %{REQUEST_URI} !\=
+RewriteCond %{REQUEST_URI} !\.
+RewriteCond %{REQUEST_URI} ![^\/]$
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+RewriteCond %{REQUEST_URI} !\?
+RewriteCond %{REQUEST_URI} !\&
+RewriteCond %{REQUEST_URI} !\=
+RewriteCond %{REQUEST_URI} !\.
+RewriteCond %{REQUEST_URI} !\/$
+RewriteCond %{HTTP_HOST} ^([^www].*)$
+RewriteRule ^(.*)$ https://%1/$1/ [L,R=301]
+
+# c index.php, index.html или index.htm
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.(php|html|htm)\ HTTP/ 
+RewriteRule ^(.*)index\.(php|html|htm)$ https://exmash.com/$1 [R=301,L]
+
+# c index.php, index.html или index.htm
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.(php|html|htm)\ HTTP/ 
+RewriteRule ^(.*)index\.(php|html|htm)$ https://%{HTTP_HOST}$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} !^www.exmash\.com/bitrix/admin/
+RewriteCond %{REQUEST_URI} !^exmash\.com/bitrix/admin/
+RewriteCond %{REQUEST_URI} ^(.*)/index\.(php|html|htm)$
+RewriteRule ^(.*)index\.(php|html|htm)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# были ранее
+#RewriteCond %{HTTP_HOST} ^([^www].*)$
+#RewriteRule ^(.*)$ http://www.%1/$1 [L,R=301]
+
+RewriteCond %{SERVER_PORT} ^80$ [OR]
+RewriteCond %{HTTP} =on
+RewriteRule ^(.*)$ https://exmash.com/$1 [R=301,L]
+
+
+# Fix Apache internal dummy connections from breaking [(site_url)] cache
+RewriteCond %{HTTP_USER_AGENT} ^.*internal\ dummy\ connection.*$ [NC]
+RewriteRule .* - [F,L]
+
+#redirect http to https
+#RewriteCond %{HTTP:SSL} !=1 [NC]
+#RewriteRule ^(.*) https://%{SERVER_NAME}/$1 [L,R=301]
+
+# Rewrite domain.com -> www.domain.com -- used with SEO Strict URLs plugin
+#RewriteCond %{HTTP_HOST} !^$
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteCond %{HTTP_HOST} (.+)$
+#RewriteRule ^(.*)$ http://www.%1/$1 [R=permanent,L] . 
+
+# without www
+#RewriteCond %{HTTP_HOST} .
+#RewriteCond %{HTTP_HOST} !^example\.com [NC]
+#RewriteRule (.*) http://example.com/$1 [R=301,L]
+
+# without www all domains
+#RewriteCond %{HTTP_HOST} .
+#RewriteCond %{HTTP_HOST} ^www.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# 301 that removes index.php?q= from all urls
+#RewriteCond %{THE_REQUEST} \s/+index\.php\?&q=([^\s&]+) [NC]
+#RewriteRule ^ /%1? [R=301,L]
+#RewriteCond %{THE_REQUEST} \s/+index\.php\?q=([^\s&]+) [NC]
+#RewriteRule ^ /%1? [R=301,L]
+
+# Exclude /assets and /manager directories and images from rewrite rules
+RewriteRule ^(manager|assets|js|css|images|img)/.*$ - [L]
+RewriteRule \.(jpg|jpeg|png|gif|ico)$ - [L]
+
+# For Friendly URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+# Reduce server overhead by enabling output compression if supported.
+#php_flag zlib.output_compression On
+#php_value zlib.output_compression_level 5
+
+
+#301 редирект на поддоменах
+RewriteRule ^beauty-blog/ana-vna-i-rna-kisloty-dlya-litsa/ /beauty-blog/aha-bha-pha-kisloty-dlya-litsa/ [R=301,L]
+
+
+RewriteRule ^catalog/сar/сar-CBC-27MHz/ /catalog/сar/сar_сbc_27mhz/ [R=301,L]
+RewriteRule ^catalog/power/SWR_meters/ /catalog/power/swr_meters/ [R=301,L]
+
+# редирект на нижний регистр
+ RewriteEngine On
+# Skip next two rules if lowercasing in progress (Remove this rule if case-conversion plug-in below is removed) 
+RewriteCond %{ENV:qLow} ^yes$ [NC] 
+RewriteRule . - [S=2] 
+# Prevent recursion and over-writing of myURI and myQS 
+RewriteCond %{ENV:qRed} ^yes$ [NC] 
+RewriteRule .? - [L] 
+# Get the client-requested full URI and full query string 
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ (/[^?]*)(\?[^\ ]*)?\ HTTP/ 
+RewriteRule .? - [E=myURI:%1,E=myQS:%2] 
+# Uppercase to lowercase conversion plug-in (This section, along with the first noted rule above, may be removed if not needed or wanted) Skip next 28 rules if no uppercase letters in URL 
+RewriteCond %{ENV:myURI} ![A-Z] 
+RewriteRule .? - [S=28] 
+# Else swap them out, one at a time 
+RewriteCond %{ENV:myURI} ^([^A]*)A(.*)$ 
+RewriteRule . - [E=myURI:%1a%2] 
+RewriteCond %{ENV:myURI} ^([^B]*)B(.*)$ 
+RewriteRule . - [E=myURI:%1b%2] 
+RewriteCond %{ENV:myURI} ^([^C]*)C(.*)$ 
+RewriteRule . - [E=myURI:%1c%2] 
+RewriteCond %{ENV:myURI} ^([^D]*)D(.*)$ 
+RewriteRule . - [E=myURI:%1d%2] 
+RewriteCond %{ENV:myURI} ^([^E]*)E(.*)$ 
+RewriteRule . - [E=myURI:%1e%2] 
+RewriteCond %{ENV:myURI} ^([^F]*)F(.*)$ 
+RewriteRule . - [E=myURI:%1f%2] 
+RewriteCond %{ENV:myURI} ^([^G]*)G(.*)$ 
+RewriteRule . - [E=myURI:%1g%2] 
+RewriteCond %{ENV:myURI} ^([^H]*)H(.*)$ 
+RewriteRule . - [E=myURI:%1h%2] 
+RewriteCond %{ENV:myURI} ^([^I]*)I(.*)$ 
+RewriteRule . - [E=myURI:%1i%2] 
+RewriteCond %{ENV:myURI} ^([^J]*)J(.*)$ 
+RewriteRule . - [E=myURI:%1j%2] 
+RewriteCond %{ENV:myURI} ^([^K]*)K(.*)$ 
+RewriteRule . - [E=myURI:%1k%2] 
+RewriteCond %{ENV:myURI} ^([^L]*)L(.*)$ 
+RewriteRule . - [E=myURI:%1l%2] 
+RewriteCond %{ENV:myURI} ^([^M]*)M(.*)$ 
+RewriteRule . - [E=myURI:%1m%2] 
+RewriteCond %{ENV:myURI} ^([^N]*)N(.*)$ 
+RewriteRule . - [E=myURI:%1n%2] 
+RewriteCond %{ENV:myURI} ^([^O]*)O(.*)$ 
+RewriteRule . - [E=myURI:%1o%2] 
+RewriteCond %{ENV:myURI} ^([^P]*)P(.*)$ 
+RewriteRule . - [E=myURI:%1p%2] 
+RewriteCond %{ENV:myURI} ^([^Q]*)Q(.*)$ 
+RewriteRule . - [E=myURI:%1q%2] 
+RewriteCond %{ENV:myURI} ^([^R]*)R(.*)$ 
+RewriteRule . - [E=myURI:%1r%2] 
+RewriteCond %{ENV:myURI} ^([^S]*)S(.*)$ 
+RewriteRule . - [E=myURI:%1s%2] 
+RewriteCond %{ENV:myURI} ^([^T]*)T(.*)$ 
+RewriteRule . - [E=myURI:%1t%2] 
+RewriteCond %{ENV:myURI} ^([^U]*)U(.*)$ 
+RewriteRule . - [E=myURI:%1u%2] 
+RewriteCond %{ENV:myURI} ^([^V]*)V(.*)$ 
+RewriteRule . - [E=myURI:%1v%2] 
+RewriteCond %{ENV:myURI} ^([^W]*)W(.*)$ 
+RewriteRule . - [E=myURI:%1w%2] 
+RewriteCond %{ENV:myURI} ^([^X]*)X(.*)$ 
+RewriteRule . - [E=myURI:%1x%2] 
+RewriteCond %{ENV:myURI} ^([^Y]*)Y(.*)$ 
+RewriteRule . - [E=myURI:%1y%2] 
+RewriteCond %{ENV:myURI} ^([^Z]*)Z(.*)$ 
+RewriteRule . - [E=myURI:%1z%2] 
+# Set lowercasing-in-progress flag 
+RewriteRule . - [E=qLow:yes] 
+# If any uppercase characters remain, re-start mod_rewrite processing from the beginning 
+RewriteCond %{ENV:myURI} [A-Z] 
+RewriteRule . - [N] 
+# If any characters were lowercased, set redirect required flag and reset lowercasing-in-progress flag (S=28 from above lands here) 
+RewriteCond %{ENV:qLow} ^yes$ [NC] 
+RewriteRule . - [E=qRed:yes,E=qLow:done] 
+# End Uppercase to lowercase conversion plug-in 
+RewriteCond %{ENV:qRed} ^yes$ [NC]
+RewriteCond %{REQUEST_URI} !\.php
+RewriteRule .? https://%{HTTP_HOST}%{ENV:myURI}%{ENV:myQS} [R=301,L] 
+
+
